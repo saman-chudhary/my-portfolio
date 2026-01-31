@@ -181,6 +181,12 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
         }
+
+        /* Small fadeIn for filter changes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
 <body>
@@ -416,105 +422,103 @@
     <!-- Portfolio Section -->
     <section id="portfolio" class="py-20 bg-slate-900/50">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 fade-up">
+            <div class="text-center mb-10 fade-up">
                 <p class="text-indigo-400 font-medium mb-2">My Recent Work</p>
                 <h2 class="text-4xl md:text-5xl font-bold">Featured <span class="gradient-text">Projects</span></h2>
+                <p class="text-gray-500 mt-3 text-sm">Screenshots load live from the websites and may take a moment to appear.</p>
             </div>
             
             <!-- Filter Buttons -->
             <div class="flex flex-wrap justify-center gap-4 mb-12 fade-up">
-                <button class="filter-btn active px-6 py-2 rounded-full bg-indigo-600 text-white transition" data-filter="all">All</button>
-                <button class="filter-btn px-6 py-2 rounded-full bg-slate-800 text-gray-400 hover:bg-indigo-600 hover:text-white transition" data-filter="wordpress">WordPress</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-indigo-600 text-white transition" data-filter="all">All</button>
                 <button class="filter-btn px-6 py-2 rounded-full bg-slate-800 text-gray-400 hover:bg-indigo-600 hover:text-white transition" data-filter="elementor">Elementor</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-slate-800 text-gray-400 hover:bg-indigo-600 hover:text-white transition" data-filter="woocommerce">WooCommerce</button>
                 <button class="filter-btn px-6 py-2 rounded-full bg-slate-800 text-gray-400 hover:bg-indigo-600 hover:text-white transition" data-filter="ecommerce">E-Commerce</button>
-                <button class="filter-btn px-6 py-2 rounded-full bg-slate-800 text-gray-400 hover:bg-indigo-600 hover:text-white transition" data-filter="shopify">Shopify</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-slate-800 text-gray-400 hover:bg-indigo-600 hover:text-white transition" data-filter="custom">Custom Theme</button>
             </div>
             
             <!-- Projects Grid -->
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="wordpress">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="WordPress Website" class="w-full h-64 object-cover">
+                
+                <!-- WordPress Projects (Elementor / WooCommerce / E-Commerce / Custom) -->
+                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="custom">
+                    <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Frutford.com?w=1600" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80';" alt="Rutford - Custom Theme" class="w-full h-80 object-contain bg-slate-900">
                     <div class="overlay-content absolute inset-0 flex flex-col items-center justify-center z-10 p-6 text-center">
-                        <h3 class="text-xl font-bold text-white mb-2">Corporate Website</h3>
-                        <p class="text-white/80 mb-4">WordPress Development</p>
+                        <h3 class="text-xl font-bold text-white mb-2">Rutford</h3>
+                        <p class="text-white/80 mb-4">Custom Theme</p>
                         <div class="flex gap-4">
-                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition">
+                            <a href="https://rutford.com" target="_blank" rel="noopener" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition" aria-label="Open Rutford">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Project 2 -->
+
                 <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="elementor">
-                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop" alt="Elementor Design" class="w-full h-64 object-cover">
+                    <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Ftree.com.sa%2Fen%2F?w=1600" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80';" alt="TREE KSA - Elementor" class="w-full h-80 object-contain bg-slate-900">
                     <div class="overlay-content absolute inset-0 flex flex-col items-center justify-center z-10 p-6 text-center">
-                        <h3 class="text-xl font-bold text-white mb-2">Creative Agency</h3>
-                        <p class="text-white/80 mb-4">Elementor Pro Design</p>
+                        <h3 class="text-xl font-bold text-white mb-2">TREE KSA</h3>
+                        <p class="text-white/80 mb-4">Elementor</p>
                         <div class="flex gap-4">
-                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition">
+                            <a href="https://tree.com.sa/en/" target="_blank" rel="noopener" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition" aria-label="Open TREE KSA">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Project 3 -->
+
+                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="woocommerce">
+                    <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fdiscountpoolsonline.com?w=1600" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600&q=80';" alt="Discount Pools Online - WooCommerce" class="w-full h-80 object-contain bg-slate-900">
+                    <div class="overlay-content absolute inset-0 flex flex-col items-center justify-center z-10 p-6 text-center">
+                        <h3 class="text-xl font-bold text-white mb-2">Discount Pools Online</h3>
+                        <p class="text-white/80 mb-4">WooCommerce</p>
+                        <div class="flex gap-4">
+                            <a href="https://discountpoolsonline.com" target="_blank" rel="noopener" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition" aria-label="Open Discount Pools Online">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="custom">
+                    <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Flupvindol.com?w=1600" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80';" alt="Lupvindol - Custom Theme" class="w-full h-80 object-contain bg-slate-900">
+                    <div class="overlay-content absolute inset-0 flex flex-col items-center justify-center z-10 p-6 text-center">
+                        <h3 class="text-xl font-bold text-white mb-2">Lupvindol</h3>
+                        <p class="text-white/80 mb-4">Custom Theme</p>
+                        <div class="flex gap-4">
+                            <a href="https://lupvindol.com" target="_blank" rel="noopener" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition" aria-label="Open Lupvindol">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="elementor">
+                    <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fthrivetherapyofks.com?w=1600" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80';" alt="Thrive Therapy KS - Elementor" class="w-full h-80 object-contain bg-slate-900">
+                    <div class="overlay-content absolute inset-0 flex flex-col items-center justify-center z-10 p-6 text-center">
+                        <h3 class="text-xl font-bold text-white mb-2">Thrive Therapy KS</h3>
+                        <p class="text-white/80 mb-4">Elementor</p>
+                        <div class="flex gap-4">
+                            <a href="https://thrivetherapyofks.com" target="_blank" rel="noopener" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition" aria-label="Open Thrive Therapy KS">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="ecommerce">
-                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop" alt="E-Commerce Store" class="w-full h-64 object-cover">
+                    <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Frevitaluxemedspa.com?w=1600" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1600&q=80';" alt="RevitaLuxe Med Spa - E-Commerce" class="w-full h-80 object-contain bg-slate-900">
                     <div class="overlay-content absolute inset-0 flex flex-col items-center justify-center z-10 p-6 text-center">
-                        <h3 class="text-xl font-bold text-white mb-2">Fashion Store</h3>
-                        <p class="text-white/80 mb-4">WooCommerce Development</p>
+                        <h3 class="text-xl font-bold text-white mb-2">RevitaLuxe Med Spa</h3>
+                        <p class="text-white/80 mb-4">E-Commerce</p>
                         <div class="flex gap-4">
-                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition">
+                            <a href="https://revitaluxemedspa.com" target="_blank" rel="noopener" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition" aria-label="Open RevitaLuxe Med Spa">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Project 4 -->
-                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="shopify">
-                    <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=600&h=400&fit=crop" alt="Shopify Store" class="w-full h-64 object-cover">
-                    <div class="overlay-content absolute inset-0 flex flex-col items-center justify-center z-10 p-6 text-center">
-                        <h3 class="text-xl font-bold text-white mb-2">Electronics Shop</h3>
-                        <p class="text-white/80 mb-4">Shopify Store</p>
-                        <div class="flex gap-4">
-                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 5 -->
-                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="wordpress">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop" alt="Business Website" class="w-full h-64 object-cover">
-                    <div class="overlay-content absolute inset-0 flex flex-col items-center justify-center z-10 p-6 text-center">
-                        <h3 class="text-xl font-bold text-white mb-2">Business Portal</h3>
-                        <p class="text-white/80 mb-4">WordPress & Custom Theme</p>
-                        <div class="flex gap-4">
-                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 6 -->
-                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="ecommerce">
-                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop" alt="Online Store" class="w-full h-64 object-cover">
-                    <div class="overlay-content absolute inset-0 flex flex-col items-center justify-center z-10 p-6 text-center">
-                        <h3 class="text-xl font-bold text-white mb-2">Retail Store</h3>
-                        <p class="text-white/80 mb-4">WooCommerce + SEO</p>
-                        <div class="flex gap-4">
-                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
@@ -641,7 +645,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>
 
 
     <!-- Contact Section -->
@@ -838,20 +842,23 @@
         const filterBtns = document.querySelectorAll('.filter-btn');
         const projects = document.querySelectorAll('.project-card');
 
+        function setActiveBtn(activeBtn) {
+            filterBtns.forEach(b => {
+                b.classList.remove('bg-indigo-600', 'text-white');
+                b.classList.add('bg-slate-800', 'text-gray-400');
+            });
+            activeBtn.classList.remove('bg-slate-800', 'text-gray-400');
+            activeBtn.classList.add('bg-indigo-600', 'text-white');
+        }
+
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                filterBtns.forEach(b => {
-                    b.classList.remove('bg-indigo-600', 'text-white');
-                    b.classList.add('bg-slate-800', 'text-gray-400');
-                });
-                btn.classList.remove('bg-slate-800', 'text-gray-400');
-                btn.classList.add('bg-indigo-600', 'text-white');
-
+                setActiveBtn(btn);
                 const filter = btn.dataset.filter;
                 projects.forEach(project => {
                     if (filter === 'all' || project.dataset.category === filter) {
                         project.style.display = 'block';
-                        project.style.animation = 'fadeIn 0.5s ease';
+                        project.style.animation = 'fadeIn 0.4s ease';
                     } else {
                         project.style.display = 'none';
                     }
@@ -875,13 +882,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
-            e.target.reset();
-        });
-
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -895,5 +895,3 @@
     </script>
 </body>
 </html>
-
-
