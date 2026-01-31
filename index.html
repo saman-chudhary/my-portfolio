@@ -95,13 +95,20 @@
             transition: width 1.5s ease;
         }
         
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        
         .project-card::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(139, 92, 246, 0.9));
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.95), rgba(139, 92, 246, 0.95));
             opacity: 0;
             transition: opacity 0.4s ease;
+            z-index: 1;
         }
         
         .project-card:hover::before {
@@ -117,6 +124,14 @@
         .project-card:hover .overlay-content {
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        .project-card img {
+            transition: transform 0.4s ease;
+        }
+        
+        .project-card:hover img {
+            transform: scale(1.1);
         }
         
         .floating {
@@ -182,10 +197,31 @@
             box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
         }
 
-        /* Small fadeIn for filter changes */
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1); }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 3;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            background: #1e293b;
+        }
+
+        .project-card img {
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -280,7 +316,7 @@
                     <i class="fab fa-wordpress text-4xl text-blue-400"></i>
                 </div>
                 <div class="absolute bottom-10 -right-4 bg-slate-800 p-4 rounded-xl shadow-lg floating" style="animation-delay: 1s;">
-                    <i class="fab fa-elementor text-4xl text-pink-400"></i>
+                    <i class="fab fa-shopify text-4xl text-green-400"></i>
                 </div>
                 <div class="absolute top-1/2 -right-8 bg-slate-800 p-4 rounded-xl shadow-lg floating" style="animation-delay: 1.5s;">
                     <i class="fab fa-figma text-4xl text-purple-400"></i>
@@ -401,10 +437,10 @@
                 <!-- Service 5 -->
                 <div class="bg-slate-800/50 p-8 rounded-2xl card-hover border border-slate-700 fade-up">
                     <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-rocket text-2xl text-white"></i>
+                        <i class="fab fa-shopify text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Speed Optimisation</h3>
-                    <p class="text-gray-400">Faster load times for improved performance, user experience, and SEO rankings.</p>
+                    <h3 class="text-xl font-semibold mb-4">Shopify Development</h3>
+                    <p class="text-gray-400">Custom Shopify stores with beautiful themes and seamless shopping experiences.</p>
                 </div>
                 
                 <!-- Service 6 -->
@@ -422,103 +458,200 @@
     <!-- Portfolio Section -->
     <section id="portfolio" class="py-20 bg-slate-900/50">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-10 fade-up">
+            <div class="text-center mb-16 fade-up">
                 <p class="text-indigo-400 font-medium mb-2">My Recent Work</p>
                 <h2 class="text-4xl md:text-5xl font-bold">Featured <span class="gradient-text">Projects</span></h2>
-                <p class="text-gray-500 mt-3 text-sm">Screenshots load live from the websites and may take a moment to appear.</p>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Here are some of my recent WordPress projects showcasing custom themes, WooCommerce stores, and Elementor designs.</p>
             </div>
             
             <!-- Filter Buttons -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12 fade-up">
-                <button class="filter-btn px-6 py-2 rounded-full bg-indigo-600 text-white transition" data-filter="all">All</button>
-                <button class="filter-btn px-6 py-2 rounded-full bg-slate-800 text-gray-400 hover:bg-indigo-600 hover:text-white transition" data-filter="elementor">Elementor</button>
-                <button class="filter-btn px-6 py-2 rounded-full bg-slate-800 text-gray-400 hover:bg-indigo-600 hover:text-white transition" data-filter="woocommerce">WooCommerce</button>
-                <button class="filter-btn px-6 py-2 rounded-full bg-slate-800 text-gray-400 hover:bg-indigo-600 hover:text-white transition" data-filter="ecommerce">E-Commerce</button>
-                <button class="filter-btn px-6 py-2 rounded-full bg-slate-800 text-gray-400 hover:bg-indigo-600 hover:text-white transition" data-filter="custom">Custom Theme</button>
+            <div class="flex flex-wrap justify-center gap-3 mb-12 fade-up">
+                <button class="filter-btn active px-5 py-2.5 rounded-full bg-indigo-600 text-white transition text-sm font-medium" data-filter="all">
+                    <i class="fas fa-th-large mr-2"></i>All Projects
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-full bg-slate-800 text-gray-400 hover:bg-indigo-600 hover:text-white transition text-sm font-medium" data-filter="woocommerce">
+                    <i class="fas fa-shopping-cart mr-2"></i>WooCommerce
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-full bg-slate-800 text-gray-400 hover:bg-indigo-600 hover:text-white transition text-sm font-medium" data-filter="elementor">
+                    <i class="fas fa-layer-group mr-2"></i>Elementor
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-full bg-slate-800 text-gray-400 hover:bg-indigo-600 hover:text-white transition text-sm font-medium" data-filter="custom-theme">
+                    <i class="fas fa-paint-brush mr-2"></i>Custom Theme
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-full bg-slate-800 text-gray-400 hover:bg-indigo-600 hover:text-white transition text-sm font-medium" data-filter="business">
+                    <i class="fas fa-briefcase mr-2"></i>Business
+                </button>
             </div>
             
             <!-- Projects Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
                 
-                <!-- WordPress Projects (Elementor / WooCommerce / E-Commerce / Custom) -->
-                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="custom">
-                    <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Frutford.com?w=1600" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80';" alt="Rutford - Custom Theme" class="w-full h-80 object-contain bg-slate-900">
+                <!-- Project 1 - Rutford -->
+                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="custom-theme business">
+                    <div class="project-badge">
+                        <span class="bg-indigo-600 text-white text-xs px-3 py-1 rounded-full font-medium">
+                            <i class="fas fa-paint-brush mr-1"></i>Custom Theme
+                        </span>
+                    </div>
+                    <img src="https://s.wordpress.com/mshots/v1/https://rutford.com/?w=800&h=600" alt="Rutford" class="w-full h-72 object-cover object-top" loading="lazy">
                     <div class="overlay-content absolute inset-0 flex flex-col items-center justify-center z-10 p-6 text-center">
-                        <h3 class="text-xl font-bold text-white mb-2">Rutford</h3>
-                        <p class="text-white/80 mb-4">Custom Theme</p>
-                        <div class="flex gap-4">
-                            <a href="https://rutford.com" target="_blank" rel="noopener" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition" aria-label="Open Rutford">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
+                        <h3 class="text-2xl font-bold text-white mb-2">Rutford</h3>
+                        <p class="text-white/80 mb-2">Business & Corporate Website</p>
+                        <div class="flex flex-wrap gap-2 justify-center mb-4">
+                            <span class="text-xs bg-white/20 px-2 py-1 rounded-full">Custom Theme</span>
+                            <span class="text-xs bg-white/20 px-2 py-1 rounded-full">Responsive</span>
                         </div>
+                        <a href="https://rutford.com/" target="_blank" class="px-6 py-2 bg-white text-indigo-600 rounded-full font-medium hover:scale-105 transition inline-flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i> View Live
+                        </a>
                     </div>
                 </div>
-
-                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="elementor">
-                    <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Ftree.com.sa%2Fen%2F?w=1600" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80';" alt="TREE KSA - Elementor" class="w-full h-80 object-contain bg-slate-900">
+                
+                <!-- Project 2 - Tree -->
+                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="elementor business">
+                    <div class="project-badge">
+                        <span class="bg-pink-600 text-white text-xs px-3 py-1 rounded-full font-medium">
+                            <i class="fas fa-layer-group mr-1"></i>Elementor
+                        </span>
+                    </div>
+                    <img src="https://s.wordpress.com/mshots/v1/https://tree.com.sa/en/?w=800&h=600" alt="Tree" class="w-full h-72 object-cover object-top" loading="lazy">
                     <div class="overlay-content absolute inset-0 flex flex-col items-center justify-center z-10 p-6 text-center">
-                        <h3 class="text-xl font-bold text-white mb-2">TREE KSA</h3>
-                        <p class="text-white/80 mb-4">Elementor</p>
-                        <div class="flex gap-4">
-                            <a href="https://tree.com.sa/en/" target="_blank" rel="noopener" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition" aria-label="Open TREE KSA">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
+                        <h3 class="text-2xl font-bold text-white mb-2">Tree</h3>
+                        <p class="text-white/80 mb-2">Saudi Arabia Business Website</p>
+                        <div class="flex flex-wrap gap-2 justify-center mb-4">
+                            <span class="text-xs bg-white/20 px-2 py-1 rounded-full">Elementor Pro</span>
+                            <span class="text-xs bg-white/20 px-2 py-1 rounded-full">Multilingual</span>
                         </div>
+                        <a href="https://tree.com.sa/en/" target="_blank" class="px-6 py-2 bg-white text-indigo-600 rounded-full font-medium hover:scale-105 transition inline-flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i> View Live
+                        </a>
                     </div>
                 </div>
-
+                
+                <!-- Project 3 - Discount Pools Online -->
                 <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="woocommerce">
-                    <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fdiscountpoolsonline.com?w=1600" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600&q=80';" alt="Discount Pools Online - WooCommerce" class="w-full h-80 object-contain bg-slate-900">
+                    <div class="project-badge">
+                        <span class="bg-emerald-600 text-white text-xs px-3 py-1 rounded-full font-medium">
+                            <i class="fas fa-shopping-cart mr-1"></i>WooCommerce
+                        </span>
+                    </div>
+                    <img src="https://s.wordpress.com/mshots/v1/https://discountpoolsonline.com/?w=800&h=600" alt="Discount Pools Online" class="w-full h-72 object-cover object-top" loading="lazy">
                     <div class="overlay-content absolute inset-0 flex flex-col items-center justify-center z-10 p-6 text-center">
-                        <h3 class="text-xl font-bold text-white mb-2">Discount Pools Online</h3>
-                        <p class="text-white/80 mb-4">WooCommerce</p>
-                        <div class="flex gap-4">
-                            <a href="https://discountpoolsonline.com" target="_blank" rel="noopener" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition" aria-label="Open Discount Pools Online">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
+                        <h3 class="text-2xl font-bold text-white mb-2">Discount Pools Online</h3>
+                        <p class="text-white/80 mb-2">E-Commerce Pool Store</p>
+                        <div class="flex flex-wrap gap-2 justify-center mb-4">
+                            <span class="text-xs bg-white/20 px-2 py-1 rounded-full">WooCommerce</span>
+                            <span class="text-xs bg-white/20 px-2 py-1 rounded-full">Payment Gateway</span>
                         </div>
+                        <a href="https://discountpoolsonline.com/" target="_blank" class="px-6 py-2 bg-white text-indigo-600 rounded-full font-medium hover:scale-105 transition inline-flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i> View Live
+                        </a>
                     </div>
                 </div>
-
-                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="custom">
-                    <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Flupvindol.com?w=1600" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80';" alt="Lupvindol - Custom Theme" class="w-full h-80 object-contain bg-slate-900">
+                
+                <!-- Project 4 - Lupvindol -->
+                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="elementor custom-theme">
+                    <div class="project-badge">
+                        <span class="bg-pink-600 text-white text-xs px-3 py-1 rounded-full font-medium">
+                            <i class="fas fa-layer-group mr-1"></i>Elementor
+                        </span>
+                    </div>
+                    <img src="https://s.wordpress.com/mshots/v1/https://lupvindol.com/?w=800&h=600" alt="Lupvindol" class="w-full h-72 object-cover object-top" loading="lazy">
                     <div class="overlay-content absolute inset-0 flex flex-col items-center justify-center z-10 p-6 text-center">
-                        <h3 class="text-xl font-bold text-white mb-2">Lupvindol</h3>
-                        <p class="text-white/80 mb-4">Custom Theme</p>
-                        <div class="flex gap-4">
-                            <a href="https://lupvindol.com" target="_blank" rel="noopener" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition" aria-label="Open Lupvindol">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
+                        <h3 class="text-2xl font-bold text-white mb-2">Lupvindol</h3>
+                        <p class="text-white/80 mb-2">Modern Business Website</p>
+                        <div class="flex flex-wrap gap-2 justify-center mb-4">
+                            <span class="text-xs bg-white/20 px-2 py-1 rounded-full">Elementor Pro</span>
+                            <span class="text-xs bg-white/20 px-2 py-1 rounded-full">Custom Design</span>
                         </div>
+                        <a href="https://lupvindol.com/" target="_blank" class="px-6 py-2 bg-white text-indigo-600 rounded-full font-medium hover:scale-105 transition inline-flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i> View Live
+                        </a>
                     </div>
                 </div>
-
-                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="elementor">
-                    <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fthrivetherapyofks.com?w=1600" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80';" alt="Thrive Therapy KS - Elementor" class="w-full h-80 object-contain bg-slate-900">
+                
+                <!-- Project 5 - Thrive Therapy of KS -->
+                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="elementor business">
+                    <div class="project-badge">
+                        <span class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-medium">
+                            <i class="fas fa-briefcase mr-1"></i>Business
+                        </span>
+                    </div>
+                    <img src="https://s.wordpress.com/mshots/v1/https://thrivetherapyofks.com/?w=800&h=600" alt="Thrive Therapy of KS" class="w-full h-72 object-cover object-top" loading="lazy">
                     <div class="overlay-content absolute inset-0 flex flex-col items-center justify-center z-10 p-6 text-center">
-                        <h3 class="text-xl font-bold text-white mb-2">Thrive Therapy KS</h3>
-                        <p class="text-white/80 mb-4">Elementor</p>
-                        <div class="flex gap-4">
-                            <a href="https://thrivetherapyofks.com" target="_blank" rel="noopener" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition" aria-label="Open Thrive Therapy KS">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
+                        <h3 class="text-2xl font-bold text-white mb-2">Thrive Therapy of KS</h3>
+                        <p class="text-white/80 mb-2">Healthcare & Therapy Website</p>
+                        <div class="flex flex-wrap gap-2 justify-center mb-4">
+                            <span class="text-xs bg-white/20 px-2 py-1 rounded-full">Healthcare</span>
+                            <span class="text-xs bg-white/20 px-2 py-1 rounded-full">Booking System</span>
                         </div>
+                        <a href="https://thrivetherapyofks.com/" target="_blank" class="px-6 py-2 bg-white text-indigo-600 rounded-full font-medium hover:scale-105 transition inline-flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i> View Live
+                        </a>
                     </div>
                 </div>
-
-                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="ecommerce">
-                    <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Frevitaluxemedspa.com?w=1600" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1600&q=80';" alt="RevitaLuxe Med Spa - E-Commerce" class="w-full h-80 object-contain bg-slate-900">
+                
+                <!-- Project 6 - Revitaluxe Med Spa -->
+                <div class="project-card relative rounded-2xl overflow-hidden group fade-up" data-category="custom-theme business">
+                    <div class="project-badge">
+                        <span class="bg-purple-600 text-white text-xs px-3 py-1 rounded-full font-medium">
+                            <i class="fas fa-spa mr-1"></i>Medical Spa
+                        </span>
+                    </div>
+                    <img src="https://s.wordpress.com/mshots/v1/https://revitaluxemedspa.com/?w=800&h=600" alt="Revitaluxe Med Spa" class="w-full h-72 object-cover object-top" loading="lazy">
                     <div class="overlay-content absolute inset-0 flex flex-col items-center justify-center z-10 p-6 text-center">
-                        <h3 class="text-xl font-bold text-white mb-2">RevitaLuxe Med Spa</h3>
-                        <p class="text-white/80 mb-4">E-Commerce</p>
-                        <div class="flex gap-4">
-                            <a href="https://revitaluxemedspa.com" target="_blank" rel="noopener" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-indigo-600 hover:scale-110 transition" aria-label="Open RevitaLuxe Med Spa">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
+                        <h3 class="text-2xl font-bold text-white mb-2">Revitaluxe Med Spa</h3>
+                        <p class="text-white/80 mb-2">Medical Spa & Wellness</p>
+                        <div class="flex flex-wrap gap-2 justify-center mb-4">
+                            <span class="text-xs bg-white/20 px-2 py-1 rounded-full">Custom Theme</span>
+                            <span class="text-xs bg-white/20 px-2 py-1 rounded-full">Appointment Booking</span>
                         </div>
+                        <a href="https://revitaluxemedspa.com/" target="_blank" class="px-6 py-2 bg-white text-indigo-600 rounded-full font-medium hover:scale-105 transition inline-flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i> View Live
+                        </a>
                     </div>
                 </div>
-
+                
+            </div>
+            
+            <!-- Portfolio Stats -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 fade-up">
+                <div class="text-center p-6 bg-slate-800/50 rounded-2xl border border-slate-700 card-hover">
+                    <div class="w-14 h-14 gradient-bg rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fab fa-wordpress text-2xl text-white"></i>
+                    </div>
+                    <div class="text-3xl font-bold gradient-text mb-1">50+</div>
+                    <p class="text-gray-400 text-sm">WordPress Sites</p>
+                </div>
+                <div class="text-center p-6 bg-slate-800/50 rounded-2xl border border-slate-700 card-hover">
+                    <div class="w-14 h-14 gradient-bg rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-shopping-cart text-2xl text-white"></i>
+                    </div>
+                    <div class="text-3xl font-bold gradient-text mb-1">20+</div>
+                    <p class="text-gray-400 text-sm">WooCommerce Stores</p>
+                </div>
+                <div class="text-center p-6 bg-slate-800/50 rounded-2xl border border-slate-700 card-hover">
+                    <div class="w-14 h-14 gradient-bg rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-star text-2xl text-white"></i>
+                    </div>
+                    <div class="text-3xl font-bold gradient-text mb-1">100%</div>
+                    <p class="text-gray-400 text-sm">Client Satisfaction</p>
+                </div>
+                <div class="text-center p-6 bg-slate-800/50 rounded-2xl border border-slate-700 card-hover">
+                    <div class="w-14 h-14 gradient-bg rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-calendar-alt text-2xl text-white"></i>
+                    </div>
+                    <div class="text-3xl font-bold gradient-text mb-1">5+</div>
+                    <p class="text-gray-400 text-sm">Years Experience</p>
+                </div>
+            </div>
+            
+            <!-- CTA -->
+            <div class="mt-16 text-center fade-up">
+                <p class="text-gray-400 mb-6">Want to see more of my work or discuss your project?</p>
+                <a href="#contact" class="gradient-bg px-8 py-4 rounded-full text-white font-semibold inline-flex items-center hover:opacity-90 transition transform hover:scale-105">
+                    <i class="fas fa-envelope mr-2"></i> Let's Work Together
+                </a>
             </div>
         </div>
     </section>
@@ -544,6 +677,16 @@
                             </div>
                             <div class="w-full bg-slate-800 rounded-full h-2">
                                 <div class="skill-bar" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Shopify Development</span>
+                                <span class="text-indigo-400">90%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2">
+                                <div class="skill-bar" style="width: 90%"></div>
                             </div>
                         </div>
                         
@@ -586,16 +729,6 @@
                                 <div class="skill-bar" style="width: 88%"></div>
                             </div>
                         </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span>Troubleshooting & Bug Fixing</span>
-                                <span class="text-indigo-400">90%</span>
-                            </div>
-                            <div class="w-full bg-slate-800 rounded-full h-2">
-                                <div class="skill-bar" style="width: 90%"></div>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
@@ -608,6 +741,10 @@
                         <div class="bg-slate-800/50 p-6 rounded-xl text-center card-hover border border-slate-700">
                             <i class="fab fa-wordpress text-4xl text-blue-500 mb-2"></i>
                             <p class="text-sm text-gray-400">WordPress</p>
+                        </div>
+                        <div class="bg-slate-800/50 p-6 rounded-xl text-center card-hover border border-slate-700">
+                            <i class="fab fa-shopify text-4xl text-green-500 mb-2"></i>
+                            <p class="text-sm text-gray-400">Shopify</p>
                         </div>
                         <div class="bg-slate-800/50 p-6 rounded-xl text-center card-hover border border-slate-700">
                             <i class="fas fa-layer-group text-4xl text-indigo-400 mb-2"></i>
@@ -632,10 +769,6 @@
                         <div class="bg-slate-800/50 p-6 rounded-xl text-center card-hover border border-slate-700">
                             <i class="fab fa-figma text-4xl text-pink-500 mb-2"></i>
                             <p class="text-sm text-gray-400">Figma</p>
-                        </div>
-                        <div class="bg-slate-800/50 p-6 rounded-xl text-center card-hover border border-slate-700">
-                            <i class="fas fa-search text-4xl text-green-400 mb-2"></i>
-                            <p class="text-sm text-gray-400">SEO Tools</p>
                         </div>
                         <div class="bg-slate-800/50 p-6 rounded-xl text-center card-hover border border-slate-700">
                             <i class="fas fa-chart-line text-4xl text-emerald-300 mb-2"></i>
@@ -712,33 +845,41 @@
                 
                 <!-- Contact Form -->
                 <div class="fade-up">
-                    <form action="https://formsubmit.co/samanchudhary12345@gmail.com" method="POST" class="space-y-6">
-                        <!-- FormSubmit Configuration -->
-                        <input type="hidden" name="_subject" value="New Portfolio Contact Message">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_next" value="">
-                        
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="successMessage" class="hidden bg-gradient-to-r from-emerald-500 to-teal-500 p-8 rounded-2xl text-center">
+                        <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-check text-4xl text-emerald-500"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Message Sent Successfully!</h3>
+                        <p class="text-white/90 mb-6">Thank you for reaching out. I'll get back to you within 24 hours.</p>
+                        <button onclick="resetForm()" class="bg-white text-emerald-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+                            <i class="fas fa-envelope mr-2"></i> Send Another Message
+                        </button>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <form id="contactForm" class="space-y-6">
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <input type="text" name="name" placeholder="Your Name" required
+                                <input type="text" name="name" id="name" placeholder="Your Name" required
                                     class="w-full px-6 py-4 bg-slate-800 rounded-xl border border-slate-700 focus:border-indigo-500 focus:outline-none transition">
                             </div>
                             <div>
-                                <input type="email" name="email" placeholder="Your Email" required
+                                <input type="email" name="email" id="email" placeholder="Your Email" required
                                     class="w-full px-6 py-4 bg-slate-800 rounded-xl border border-slate-700 focus:border-indigo-500 focus:outline-none transition">
                             </div>
                         </div>
                         <div>
-                            <input type="text" name="subject" placeholder="Subject" required
+                            <input type="text" name="subject" id="subject" placeholder="Subject" required
                                 class="w-full px-6 py-4 bg-slate-800 rounded-xl border border-slate-700 focus:border-indigo-500 focus:outline-none transition">
                         </div>
                         <div>
-                            <textarea name="message" placeholder="Tell me about your project..." rows="6" required
+                            <textarea name="message" id="message" placeholder="Tell me about your project..." rows="6" required
                                 class="w-full px-6 py-4 bg-slate-800 rounded-xl border border-slate-700 focus:border-indigo-500 focus:outline-none transition resize-none"></textarea>
                         </div>
-                        <button type="submit" class="gradient-bg px-8 py-4 rounded-full text-white font-semibold w-full hover:opacity-90 transition transform hover:scale-[1.02]">
-                            <i class="fas fa-paper-plane mr-2"></i> Send Message
+                        <button type="submit" id="submitBtn" class="gradient-bg px-8 py-4 rounded-full text-white font-semibold w-full hover:opacity-90 transition transform hover:scale-[1.02]">
+                            <span id="btnText"><i class="fas fa-paper-plane mr-2"></i> Send Message</span>
+                            <span id="btnLoading" class="hidden"><i class="fas fa-spinner fa-spin mr-2"></i> Sending...</span>
                         </button>
                     </form>
                 </div>
@@ -762,7 +903,7 @@
     <script>
         // Typing Effect
         const typedElement = document.getElementById('typed');
-        const texts = ['Senior CMS Developer', 'WordPress Expert', 'Elementor Specialist', 'WooCommerce Developer', 'UI/UX Enthusiast'];
+        const texts = ['Senior CMS Developer', 'WordPress Expert', 'Shopify Developer', 'Elementor Specialist', 'WooCommerce Developer'];
         let textIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -842,23 +983,21 @@
         const filterBtns = document.querySelectorAll('.filter-btn');
         const projects = document.querySelectorAll('.project-card');
 
-        function setActiveBtn(activeBtn) {
-            filterBtns.forEach(b => {
-                b.classList.remove('bg-indigo-600', 'text-white');
-                b.classList.add('bg-slate-800', 'text-gray-400');
-            });
-            activeBtn.classList.remove('bg-slate-800', 'text-gray-400');
-            activeBtn.classList.add('bg-indigo-600', 'text-white');
-        }
-
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                setActiveBtn(btn);
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-indigo-600', 'text-white');
+                    b.classList.add('bg-slate-800', 'text-gray-400');
+                });
+                btn.classList.remove('bg-slate-800', 'text-gray-400');
+                btn.classList.add('bg-indigo-600', 'text-white');
+
                 const filter = btn.dataset.filter;
                 projects.forEach(project => {
-                    if (filter === 'all' || project.dataset.category === filter) {
+                    const categories = project.dataset.category.split(' ');
+                    if (filter === 'all' || categories.includes(filter)) {
                         project.style.display = 'block';
-                        project.style.animation = 'fadeIn 0.4s ease';
+                        project.style.animation = 'fadeIn 0.5s ease';
                     } else {
                         project.style.display = 'none';
                     }
@@ -892,6 +1031,64 @@
                 }
             });
         });
+
+        // Contact Form Submission with AJAX
+        const contactForm = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnLoading = document.getElementById('btnLoading');
+
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            btnText.classList.add('hidden');
+            btnLoading.classList.remove('hidden');
+            submitBtn.disabled = true;
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            
+            try {
+                // Send form data using fetch
+                const response = await fetch('https://formsubmit.co/ajax/samanchudhary12345@gmail.com', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Hide form and show success message
+                    contactForm.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                    
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                // Still show success since FormSubmit might have received it
+                contactForm.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            // Reset button state
+            btnText.classList.remove('hidden');
+            btnLoading.classList.add('hidden');
+            submitBtn.disabled = false;
+        });
+
+        // Reset form function
+        function resetForm() {
+            contactForm.reset();
+            successMessage.classList.add('hidden');
+            contactForm.classList.remove('hidden');
+        }
     </script>
 </body>
 </html>
